@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Calculator — Calculate. Convert. Understand.</title>
+<meta name="description" content="An all-in-one engineering and scientific calculator: basic arithmetic, BMI, stress, strain, scientific functions, unit conversion, percentages and averages.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="dark">
+
+<div class="ruler-top" aria-hidden="true"></div>
+
+<div class="app-shell">
+
+  <!-- ========== SIDEBAR NAV ========== -->
+  <header class="topbar">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#home" class="brand" data-nav="home">
+      <span class="brand-mark">⟠</span>
+      <span class="brand-text">Engineering Calculator</span>
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark or light mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+  </header>
+
+  <nav class="sidenav" id="sideNav">
+    <div class="sidenav-inner">
+      <p class="sidenav-label">Navigate</p>
+      <ul class="sidenav-list">
+        <li><a href="#home" data-nav="home"><span class="dial">◇</span>Home</a></li>
+        <li><a href="#basic" data-nav="basic"><span class="dial">01</span>Basic</a></li>
+        <li><a href="#bmi" data-nav="bmi"><span class="dial">02</span>BMI</a></li>
+        <li><a href="#stress" data-nav="stress"><span class="dial">03</span>Stress</a></li>
+        <li><a href="#strain" data-nav="strain"><span class="dial">04</span>Strain</a></li>
+        <li><a href="#scientific" data-nav="scientific"><span class="dial">05</span>Scientific</a></li>
+        <li><a href="#converter" data-nav="converter"><span class="dial">06</span>Unit Converter</a></li>
+        <li><a href="#percentage" data-nav="percentage"><span class="dial">07</span>Percentage</a></li>
+        <li><a href="#average" data-nav="average"><span class="dial">08</span>Average</a></li>
+      </ul>
+      <p class="sidenav-label">Record</p>
+      <ul class="sidenav-list">
+        <li><a href="#history" data-nav="history"><span class="dial">≡</span>History</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="nav-scrim" id="navScrim"></div>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main" id="main">
+
+    <!-- HOME -->
+    <section class="view" id="view-home" data-view="home">
+      <div class="hero">
+        <p class="hero-eyebrow">Instrument panel</p>
+        <h1 class="hero-title">Calculate. Convert.<br>Understand.</h1>
+        <p class="hero-sub">Eight tools for arithmetic, mechanics and everyday numbers — kept on one page, worked out on the spot, nothing sent anywhere.</p>
+      </div>
+
+      <div class="tile-grid">
+        <a class="tile" href="#basic" data-nav="basic">
+          <span class="tile-corner tl"></span><span class="tile-corner br"></span>
+          <span class="tile-icon">🧮</span>
+          <span class="tile-name">Basic Calculator</span>
+          <span class="tile-desc">Arithmetic with history and keyboard input</span>
+        </a>
+        <a class="tile" href="#bmi" data-nav="bmi">
+          <span class="tile-corner tl"></span><span class="tile-corner br"></span>
+          <span class="tile-icon">🧍</span>
+          <span class="tile-name">BMI Calculator</span>
+          <span class="tile-desc">Body mass index, metric or imperial</span>
+        </a>
+        <a class="tile" href="#stress" data-nav="stress">
+          <span class="tile-corner tl"></span><span class="tile-corner br"></span>
+          <span class="tile-icon">⚙️</span>
+          <span class="tile-name">Stress Calculator</span>
+          <span class="tile-desc">Mechanical stress, σ = F / A</span>
+        </a>
+        <a class="tile" href="#strain" data-nav="strain">
+          <span class="tile-corner tl"></span><span class="tile-corner br"></span>
+          <span class="tile-icon">📏</span>
+          <span class="tile-name">Strain Calculator</span>
+          <span class="tile-desc">Deformation, ε = ΔL / L₀</span>
+        </a>
+        <a class="tile" href="#scientific" data-nav="scientific">
+          <span class="tile-corner tl"></span><span class="tile-corner br"></span>
+          <span class="tile-icon">🔬</span>
+          <span class="tile-name">Scientific Calculator</span>
+          <span class="tile-desc">Trig, logs, powers and constants</span>
+        </a>
+        <a class="tile" href="#converter" data-nav="converter">
+          <span class="tile-corner tl"></span><span class="tile-corner br"></span>
+          <span class="tile-icon">🔄</span>
+          <span class="tile-name">Unit Converter</span>
+          <span class="tile-desc">Length, mass, pressure, energy &amp; more</span>
+        </a>
+        <a class="tile" href="#percentage" data-nav="percentage">
+          <span class="tile-corner tl"></span><span class="tile-corner br"></span>
+          <span class="tile-icon">📊</span>
+          <span class="tile-name">Percentage Calculator</span>
+          <span class="tile-desc">Shares, increase, decrease, difference</span>
+        </a>
+        <a class="tile" href="#average" data-nav="average">
+          <span class="tile-corner tl"></span><span class="tile-corner br"></span>
+          <span class="tile-icon">📈</span>
+          <span class="tile-name">Average Calculator</span>
+          <span class="tile-desc">Mean, sum, minimum and maximum</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- BASIC CALCULATOR -->
+    <section class="view" id="view-basic" data-view="basic" hidden>
+      <h2 class="view-title">Basic Calculator</h2>
+      <p class="view-sub">Standard arithmetic. Type or tap — the keyboard works too.</p>
+
+      <div class="panel calc-panel">
+        <div class="calc-display">
+          <div class="calc-expression" id="basicExpression" aria-live="polite"></div>
+          <div class="calc-result" id="basicResult">0</div>
+        </div>
+        <div class="calc-keys" id="basicKeys">
+          <button class="key key-fn" data-key="AC">AC</button>
+          <button class="key key-fn" data-key="DEL">⌫</button>
+          <button class="key key-fn" data-key="%">%</button>
+          <button class="key key-op" data-key="/">÷</button>
+
+          <button class="key" data-key="7">7</button>
+          <button class="key" data-key="8">8</button>
+          <button class="key" data-key="9">9</button>
+          <button class="key key-op" data-key="*">×</button>
+
+          <button class="key" data-key="4">4</button>
+          <button class="key" data-key="5">5</button>
+          <button class="key" data-key="6">6</button>
+          <button class="key key-op" data-key="-">−</button>
+
+          <button class="key" data-key="1">1</button>
+          <button class="key" data-key="2">2</button>
+          <button class="key" data-key="3">3</button>
+          <button class="key key-op" data-key="+">+</button>
+
+          <button class="key" data-key="(">(</button>
+          <button class="key" data-key="0">0</button>
+          <button class="key" data-key=")">)</button>
+          <button class="key key-fn" data-key="+/-">±</button>
+
+          <button class="key" data-key=".">.</button>
+          <button class="key key-eq" data-key="=" style="grid-column: span 3;">=</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BMI CALCULATOR -->
+    <section class="view" id="view-bmi" data-view="bmi" hidden>
+      <h2 class="view-title">BMI Calculator</h2>
+      <p class="view-sub">Body mass index from your height and weight.</p>
+
+      <div class="panel form-panel">
+        <div class="unit-switch" role="tablist" aria-label="Unit system">
+          <button class="unit-btn is-active" data-units="metric" role="tab" aria-selected="true">kg / cm</button>
+          <button class="unit-btn" data-units="imperial" role="tab" aria-selected="false">lb / ft-in</button>
+        </div>
+
+        <form id="bmiForm" class="calc-form" novalidate>
+          <div class="field-row" data-units-group="metric">
+            <label class="field">
+              <span>Weight (kg)</span>
+              <input type="number" id="bmiWeightKg" step="any" min="0" placeholder="e.g. 68">
+            </label>
+            <label class="field">
+              <span>Height (cm)</span>
+              <input type="number" id="bmiHeightCm" step="any" min="0" placeholder="e.g. 172">
+            </label>
+          </div>
+          <div class="field-row" data-units-group="imperial" hidden>
+            <label class="field">
+              <span>Weight (lb)</span>
+              <input type="number" id="bmiWeightLb" step="any" min="0" placeholder="e.g. 150">
+            </label>
+            <label class="field">
+              <span>Height (ft)</span>
+              <input type="number" id="bmiHeightFt" step="any" min="0" placeholder="e.g. 5">
+            </label>
+            <label class="field">
+              <span>Height (in)</span>
+              <input type="number" id="bmiHeightIn" step="any" min="0" placeholder="e.g. 8">
+            </label>
+          </div>
+          <button type="submit" class="btn-primary">Calculate BMI</button>
+        </form>
+
+        <div class="result-card" id="bmiResult" hidden>
+          <p class="result-label">Your BMI</p>
+          <p class="result-value" id="bmiValue">—</p>
+          <p class="result-tag" id="bmiCategory">—</p>
+          <div class="bmi-scale" id="bmiScale">
+            <div class="bmi-scale-marker" id="bmiMarker"></div>
+          </div>
+        </div>
+        <p class="error-msg" id="bmiError" hidden></p>
+
+        <details class="formula-box">
+          <summary>Formula &amp; explanation</summary>
+          <p class="formula">BMI = Weight (kg) / Height² (m²)</p>
+          <p>BMI is a screening measure, not a diagnosis. Under 18.5 is underweight, 18.5–24.9 is normal, 25–29.9 is overweight, and 30 or above is obesity.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- STRESS CALCULATOR -->
+    <section class="view" id="view-stress" data-view="stress" hidden>
+      <h2 class="view-title">Stress Calculator</h2>
+      <p class="view-sub">Mechanical / engineering stress from an applied force and cross-sectional area.</p>
+
+      <div class="panel form-panel">
+        <form id="stressForm" class="calc-form" novalidate>
+          <div class="field-row">
+            <label class="field">
+              <span>Force</span>
+              <input type="number" id="stressForce" step="any" placeholder="e.g. 10000">
+            </label>
+            <label class="field field-unit">
+              <span>Unit</span>
+              <select id="stressForceUnit">
+                <option value="N">N</option>
+                <option value="kN">kN</option>
+              </select>
+            </label>
+          </div>
+          <div class="field-row">
+            <label class="field">
+              <span>Area</span>
+              <input type="number" id="stressArea" step="any" min="0" placeholder="e.g. 1000">
+            </label>
+            <label class="field field-unit">
+              <span>Unit</span>
+              <select id="stressAreaUnit">
+                <option value="mm2">mm²</option>
+                <option value="cm2">cm²</option>
+                <option value="m2">m²</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit" class="btn-primary">Calculate Stress</button>
+        </form>
+
+        <div class="result-card" id="stressResult" hidden>
+          <p class="result-label">Mechanical Stress (σ)</p>
+          <p class="result-value" id="stressValue">—</p>
+          <p class="result-tag" id="stressUnitOut">—</p>
+        </div>
+        <p class="error-msg" id="stressError" hidden></p>
+
+        <details class="formula-box">
+          <summary>Formula &amp; explanation</summary>
+          <p class="formula">σ = F / A</p>
+          <p>σ is stress, F is the applied force, and A is the cross-sectional area it acts on. Stress is reported in pascals (Pa), where 1 Pa = 1 N/m².</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- STRAIN CALCULATOR -->
+    <section class="view" id="view-strain" data-view="strain" hidden>
+      <h2 class="view-title">Strain Calculator</h2>
+      <p class="view-sub">Deformation relative to original length.</p>
+
+      <div class="panel form-panel">
+        <div class="unit-switch" role="tablist" aria-label="Strain input mode">
+          <button class="unit-btn is-active" data-strain-mode="final" role="tab" aria-selected="true">Final length</button>
+          <button class="unit-btn" data-strain-mode="delta" role="tab" aria-selected="false">Change in length</button>
+        </div>
+
+        <form id="strainForm" class="calc-form" novalidate>
+          <div class="field-row">
+            <label class="field">
+              <span>Original length, L₀</span>
+              <input type="number" id="strainL0" step="any" min="0" placeholder="e.g. 500">
+            </label>
+          </div>
+          <div class="field-row" data-strain-group="final">
+            <label class="field">
+              <span>Final length, L</span>
+              <input type="number" id="strainL1" step="any" min="0" placeholder="e.g. 502.5">
+            </label>
+          </div>
+          <div class="field-row" data-strain-group="delta" hidden>
+            <label class="field">
+              <span>Change in length, ΔL</span>
+              <input type="number" id="strainDelta" step="any" placeholder="e.g. 2.5">
+            </label>
+          </div>
+          <p class="field-hint">Use the same length unit for both fields — the result is unit-independent.</p>
+          <button type="submit" class="btn-primary">Calculate Strain</button>
+        </form>
+
+        <div class="result-card" id="strainResult" hidden>
+          <p class="result-label">Strain (ε)</p>
+          <p class="result-value" id="strainValue">—</p>
+          <p class="result-tag" id="strainPercent">—</p>
+          <p class="result-tag" id="strainType">—</p>
+          <p class="result-tag" id="strainDeltaOut">—</p>
+        </div>
+        <p class="error-msg" id="strainError" hidden></p>
+
+        <details class="formula-box">
+          <summary>Formula &amp; explanation</summary>
+          <p class="formula">ε = ΔL / L₀</p>
+          <p>ε is strain, ΔL is the change in length, and L₀ is the original length. A positive strain is tensile (stretching); a negative strain is compressive (shortening).</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- SCIENTIFIC CALCULATOR -->
+    <section class="view" id="view-scientific" data-view="scientific" hidden>
+      <h2 class="view-title">Scientific Calculator</h2>
+      <p class="view-sub">Trigonometry, logarithms, powers and constants.</p>
+
+      <div class="panel calc-panel">
+        <div class="calc-display">
+          <div class="calc-expression" id="sciExpression" aria-live="polite"></div>
+          <div class="calc-result" id="sciResult">0</div>
+        </div>
+
+        <div class="mode-row">
+          <div class="unit-switch" role="tablist" aria-label="Angle mode">
+            <button class="unit-btn is-active" data-angle-mode="deg" role="tab" aria-selected="true">DEG</button>
+            <button class="unit-btn" data-angle-mode="rad" role="tab" aria-selected="false">RAD</button>
+          </div>
+          <button class="unit-btn" id="sciInv" aria-pressed="false">INV</button>
+        </div>
+
+        <div class="calc-keys sci-keys" id="sciFnKeys">
+          <button class="key key-fn" data-fn="sin">sin</button>
+          <button class="key key-fn" data-fn="cos">cos</button>
+          <button class="key key-fn" data-fn="tan">tan</button>
+          <button class="key key-fn" data-fn="log">log</button>
+          <button class="key key-fn" data-fn="ln">ln</button>
+
+          <button class="key key-fn" data-fn="sq">x²</button>
+          <button class="key key-fn" data-fn="cube">x³</button>
+          <button class="key key-fn" data-fn="sqrt">√x</button>
+          <button class="key key-fn" data-fn="cbrt">∛x</button>
+          <button class="key key-fn" data-fn="pow">xʸ</button>
+
+          <button class="key key-fn" data-fn="recip">1/x</button>
+          <button class="key key-fn" data-fn="abs">|x|</button>
+          <button class="key key-fn" data-fn="fact">x!</button>
+          <button class="key key-fn" data-fn="exp">eˣ</button>
+          <button class="key key-fn" data-fn="pi">π</button>
+
+          <button class="key key-fn" data-fn="e">e</button>
+        </div>
+
+        <div class="calc-keys" id="sciKeys">
+          <button class="key key-fn" data-key="AC">AC</button>
+          <button class="key key-fn" data-key="DEL">⌫</button>
+          <button class="key key-fn" data-key="(">(</button>
+          <button class="key key-fn" data-key=")">)</button>
+          <button class="key key-op" data-key="/">÷</button>
+
+          <button class="key" data-key="7">7</button>
+          <button class="key" data-key="8">8</button>
+          <button class="key" data-key="9">9</button>
+          <button class="key key-op" data-key="*">×</button>
+          <button class="key key-op" data-key="^">^</button>
+
+          <button class="key" data-key="4">4</button>
+          <button class="key" data-key="5">5</button>
+          <button class="key" data-key="6">6</button>
+          <button class="key key-op" data-key="-">−</button>
+          <button class="key key-fn" data-key="+/-">±</button>
+
+          <button class="key" data-key="1">1</button>
+          <button class="key" data-key="2">2</button>
+          <button class="key" data-key="3">3</button>
+          <button class="key key-op" data-key="+" style="grid-row: span 2;">+</button>
+          <button class="key key-eq" data-key="=" style="grid-row: span 2;">=</button>
+
+          <button class="key" data-key="0" style="grid-column: span 2;">0</button>
+          <button class="key" data-key=".">.</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT CONVERTER -->
+    <section class="view" id="view-converter" data-view="converter" hidden>
+      <h2 class="view-title">Unit Converter</h2>
+      <p class="view-sub">Convert between units across seven categories.</p>
+
+      <div class="panel form-panel">
+        <label class="field">
+          <span>Category</span>
+          <select id="convCategory">
+            <option value="length">Length</option>
+            <option value="area">Area</option>
+            <option value="mass">Mass</option>
+            <option value="force">Force</option>
+            <option value="pressure">Pressure</option>
+            <option value="energy">Energy</option>
+            <option value="temperature">Temperature</option>
+          </select>
+        </label>
+
+        <div class="convert-row">
+          <label class="field">
+            <span>From</span>
+            <input type="number" id="convFromValue" step="any" placeholder="Enter value">
+          </label>
+          <label class="field field-unit">
+            <span>Unit</span>
+            <select id="convFromUnit"></select>
+          </label>
+        </div>
+
+        <button class="swap-btn" id="convSwap" type="button" aria-label="Swap units">⇅</button>
+
+        <div class="convert-row">
+          <label class="field">
+            <span>To</span>
+            <input type="text" id="convToValue" readonly placeholder="Result">
+          </label>
+          <label class="field field-unit">
+            <span>Unit</span>
+            <select id="convToUnit"></select>
+          </label>
+        </div>
+        <p class="error-msg" id="convError" hidden></p>
+      </div>
+    </section>
+
+    <!-- PERCENTAGE CALCULATOR -->
+    <section class="view" id="view-percentage" data-view="percentage" hidden>
+      <h2 class="view-title">Percentage Calculator</h2>
+      <p class="view-sub">Four common percentage problems.</p>
+
+      <div class="panel form-panel">
+        <div class="unit-switch wrap" role="tablist" aria-label="Percentage mode">
+          <button class="unit-btn is-active" data-pct-mode="of" role="tab" aria-selected="true">X% of Y</button>
+          <button class="unit-btn" data-pct-mode="increase" role="tab" aria-selected="false">% Increase</button>
+          <button class="unit-btn" data-pct-mode="decrease" role="tab" aria-selected="false">% Decrease</button>
+          <button class="unit-btn" data-pct-mode="difference" role="tab" aria-selected="false">% Difference</button>
+        </div>
+
+        <form id="pctForm" class="calc-form" novalidate>
+          <div class="field-row" data-pct-group="of">
+            <label class="field"><span>X (%)</span><input type="number" id="pctOfX" step="any" placeholder="e.g. 20"></label>
+            <label class="field"><span>Y</span><input type="number" id="pctOfY" step="any" placeholder="e.g. 150"></label>
+          </div>
+          <div class="field-row" data-pct-group="increase" hidden>
+            <label class="field"><span>Original value</span><input type="number" id="pctIncFrom" step="any" placeholder="e.g. 80"></label>
+            <label class="field"><span>New value</span><input type="number" id="pctIncTo" step="any" placeholder="e.g. 100"></label>
+          </div>
+          <div class="field-row" data-pct-group="decrease" hidden>
+            <label class="field"><span>Original value</span><input type="number" id="pctDecFrom" step="any" placeholder="e.g. 100"></label>
+            <label class="field"><span>New value</span><input type="number" id="pctDecTo" step="any" placeholder="e.g. 80"></label>
+          </div>
+          <div class="field-row" data-pct-group="difference" hidden>
+            <label class="field"><span>Value A</span><input type="number" id="pctDiffA" step="any" placeholder="e.g. 40"></label>
+            <label class="field"><span>Value B</span><input type="number" id="pctDiffB" step="any" placeholder="e.g. 60"></label>
+          </div>
+          <button type="submit" class="btn-primary">Calculate</button>
+        </form>
+
+        <div class="result-card" id="pctResult" hidden>
+          <p class="result-label" id="pctLabel">Result</p>
+          <p class="result-value" id="pctValue">—</p>
+        </div>
+        <p class="error-msg" id="pctError" hidden></p>
+      </div>
+    </section>
+
+    <!-- AVERAGE CALCULATOR -->
+    <section class="view" id="view-average" data-view="average" hidden>
+      <h2 class="view-title">Average Calculator</h2>
+      <p class="view-sub">Enter numbers separated by commas, spaces or new lines.</p>
+
+      <div class="panel form-panel">
+        <form id="avgForm" class="calc-form" novalidate>
+          <label class="field">
+            <span>Numbers</span>
+            <textarea id="avgInput" rows="4" placeholder="e.g. 4, 8, 15, 16, 23, 42"></textarea>
+          </label>
+          <button type="submit" class="btn-primary">Calculate</button>
+        </form>
+
+        <div class="result-card stat-grid" id="avgResult" hidden>
+          <div><p class="result-label">Mean</p><p class="result-value small" id="avgMean">—</p></div>
+          <div><p class="result-label">Sum</p><p class="result-value small" id="avgSum">—</p></div>
+          <div><p class="result-label">Minimum</p><p class="result-value small" id="avgMin">—</p></div>
+          <div><p class="result-label">Maximum</p><p class="result-value small" id="avgMax">—</p></div>
+          <div><p class="result-label">Count</p><p class="result-value small" id="avgCount">—</p></div>
+        </div>
+        <p class="error-msg" id="avgError" hidden></p>
+      </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="view" id="view-history" data-view="history" hidden>
+      <h2 class="view-title">Calculation History</h2>
+      <p class="view-sub">Kept in this browser only, across every calculator.</p>
+
+      <div class="panel">
+        <div class="history-toolbar">
+          <span id="historyCount">0 entries</span>
+          <button class="btn-ghost" id="historyClear" type="button">Clear history</button>
+        </div>
+        <ul class="history-list" id="historyList">
+          <li class="history-empty">No calculations yet. Results will appear here as you work.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-title">Engineering Calculator</p>
+        <p class="footer-tag">Built for learning, engineering calculations and everyday use.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="#home" data-nav="home">About</a>
+        <a href="mailto:hello@example.com">Contact</a>
+      </div>
+      <p class="footer-version">v1.0.0</p>
+    </div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
